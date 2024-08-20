@@ -1,0 +1,22 @@
+<div class="container m-5">
+  <h1>All Tasks</h1>
+    <% @tasks.each do |task| %>
+  <div class='d-flex flex-column'>
+    <div>
+      <% if task.completed %>
+        <input type="checkbox" checked>
+        <%= link_to task.title, task_path(task), class: 'text-decoration-none  text-black' %>
+      <% else %>
+        <input type="checkbox">
+        <%= link_to task.title, task_path(task), class: 'text-decoration-none  text-black' %>
+      <% end %>
+
+      <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-solid fa-trash-can"></i>
+      <% end %>
+    </div>
+  </div>
+    <% end %>
+  <hr>
+  <%= link_to "Add a new task", new_task_path, class: "text-body-emphasis btn btn-primary" %>
+</div>
